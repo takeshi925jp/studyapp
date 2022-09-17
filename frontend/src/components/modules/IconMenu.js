@@ -6,49 +6,81 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
+import SendIcon from '@mui/icons-material/Send';
+import { Link } from "react-router-dom";
+import ListItem from '@mui/material/ListItem';
 
-export default function IconMenu() {
+export default function IconMenu(props) {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCopy fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Cloud fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
-        </MenuItem>
+
+        {props.studyschedule &&
+          <>
+            <MenuItem>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItem button component={Link} to={`/studyschedule`}>
+                <ListItemText>学習計画一覧画面</ListItemText>
+              </ListItem>
+              <Typography variant="body2" color="text.secondary">
+
+              </Typography>
+            </MenuItem>
+          </>
+        }
+
+        {props.studying &&
+          <>
+            <MenuItem>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItem button component={Link} to={`/studying`}>
+                <ListItemText>学習中画面</ListItemText>
+              </ListItem>
+              <Typography variant="body2" color="text.secondary">
+                ⌘X
+              </Typography>
+            </MenuItem>
+          </>
+        }
+
+        {props.history &&
+          <>
+            <MenuItem>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItem button component={Link} to={`/history`}>
+                <ListItemText>学習履歴画面</ListItemText>
+              </ListItem>
+              <Typography variant="body2" color="text.secondary">
+
+              </Typography>
+            </MenuItem>
+          </>
+        }
+
+        {props.login &&
+          <>
+            <MenuItem>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItem button component={Link} to={`/login`}>
+                <ListItemText>ログイン画面</ListItemText>
+              </ListItem>
+              <Typography variant="body2" color="text.secondary">
+
+              </Typography>
+            </MenuItem>
+          </>
+        }
+
+
+
       </MenuList>
     </Paper>
   );

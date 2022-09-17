@@ -8,21 +8,34 @@ const Title = (props) => {
     const [title, setTitle] = useState("");
     const [returnFlg, setReturnFlg] = useState(false);
 
+    const logout = () => {
+        fetch('/logout')
+            .then((res) => res.json())
+            .then((data) => {
+                window.location = "/login"
+            });
+    }
+
     return (
         <>
             <Grid container spacing={2}>
-                <Grid xs={8}>
+                <Grid xs={4}>
+                </Grid>
+                <Grid xs={4}>
                     <p>{props.title}</p>
                 </Grid>
                 <Grid xs={1}>
-                    <a href="/login">ログアウト</a>
+                    <button
+                        type="button"
+                        onClick={logout}>ログアウト
+                    </button>
                 </Grid>
                 <Grid xs={1}>
-                {props.returnFlg && (
-                    <div>
-                        <a href={props.return_link}>戻る</a>
-                    </div>
-                )}
+                    {props.returnFlg && (
+                        <div>
+                            <a href={props.return_link}>戻る</a>
+                        </div>
+                    )}
                 </Grid>
             </Grid>
         </>

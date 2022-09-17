@@ -19,8 +19,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
+
+  const logout = () => {
+    fetch('/logout')
+      .then((res) => res.json())
+      .then((data) => {
+        window.location = "/login"
+      });
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -29,9 +38,17 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            {props.title}
           </Typography>
-          <Button color="inherit">Login</Button>
+          
+          {props.logoutFlg &&
+          <button
+            id="a-button"
+            type="button"
+            onClick={logout}>ログアウト
+          </button>
+          }
+
         </Toolbar>
       </AppBar>
     </div>
